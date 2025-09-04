@@ -1,0 +1,43 @@
+name: Deploy Pages
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Prepare site
+        run: |
+          set -e
+          mkdir -p site
+          # Pick the newest Release HTML by semantic version if multiple files exist
+          LATEST_FILE="$(ls -1 index-Release-*.htm | sort -V | tail -n1)"
+          if [ -z "$LATEST_FILE" ]; then
+            echo "No index-Release-*.htm found. Please add one to the repo root."
+            exit 1
+          fi
+          cp "$LATEST_FILE" site/index.html
+          echo "Using $LATEST_FILE → site/index.html"
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./site
+
+      - name: Deploy to GitHub Pages
+        uses: actions/deploy-pages@v4
