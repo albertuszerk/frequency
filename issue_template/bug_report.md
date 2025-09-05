@@ -24,3 +24,13 @@ A clear and concise description of the bug.
 …
 
 ## Console output
+…
+
+## Environment
+- OS:
+- Browser:
+- App file: (e.g. index-Release-1.34.73-20250904.htm)
+
+## Additional context
+…
+
