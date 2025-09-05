@@ -1,0 +1,6 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom tweaks (optional) */
+/* .faq-emphasis { @apply font-semibold text-blue-700; } */
