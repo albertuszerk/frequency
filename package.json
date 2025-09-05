@@ -1,0 +1,13 @@
+{
+  "name": "x-frequency",
+  "private": true,
+  "scripts": {
+    "build:css": "npx tailwindcss -c tailwind.config.js -i ./src/tailwind.input.css -o ./tailwind.min.css --minify",
+    "watch:css": "npx tailwindcss -c tailwind.config.js -i ./src/tailwind.input.css -o ./tailwind.min.css --watch"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.4.10",
+    "postcss": "^8.4.41",
+    "autoprefixer": "^10.4.20"
+  }
+}
